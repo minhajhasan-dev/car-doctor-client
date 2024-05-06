@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 import { AuthContext } from "../../providers/AuthProvider";
 const Login = () => {
+  const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
@@ -13,7 +14,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
